@@ -26,33 +26,33 @@ Neste exemplo será demonstrada a criação de categorias com o pandas, bem como
 
 ### Passo 1
 Primeiramente, faça o download do projeto:
-```
+```sh
 git clone https://github.com/andviana/pd_categories_example.git
 ```
 
 ### Passo 2
 Agora, entre na pasta do projeto e abra a sua IDE (os comandos abaixo abrirão o Visual Studio Code na pasta raiz do projeto)
-```
-cd dataframes_examples
+```sh
+cd pd_categories_example
 code .
 ```
 
 ### Passo 3 (opcional)
 Se precisar criar um ambiente virtual, no terminal, execute os comandos:
 > *a criação do venv é um passo necessário no **Ubuntu 24**, bem como em outras distros linux*
-```
+```sh
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 Para desativar o ambiente virtual (venv), use o comando abaixo:
 > *não execute esse comando agora, pois caso seja o venv seja desativado, problemas podem ocorrer ao tentar instalar as dependências do projeto com o* ```pip```
-```
+```sh
 deactivate
 ```
 
 ### Passo 4
 No terminal do seu IDE, execute a instalação do [Pandas](https://pandas.pydata.org/docs/user_guide/index.html) e do [Matplotlib](https://matplotlib.org/) conforme comandos abaixo:
-```
+```sh
 pip install pandas
 pip install matplotlib
 ```
@@ -60,7 +60,7 @@ pip install matplotlib
 # Código do Exemplo
 
 ### Separar valores por faixa de categoria com pandas cut
-```
+```python
 # (0,2],(2,5],(5,inf]
 
 faixas = [0,2,5,float('inf')]
@@ -75,7 +75,7 @@ df.info()
 
 
 ### Criando categorias em outras colunas
-```
+```python
 df.columns
 colunas_categoricas = ["sex", "smoker", "day", "time" ]
 
@@ -91,7 +91,7 @@ df_categorizado.info()
 
 
 ### Categorias ordenadas
-```
+```python
 df_categorizado["day"].value_counts()
 df_categorizado["day"].value_counts().sort_index()
 # ele automaticamente categorizou em ordem alfabetica, assim que reconheceu que é texto
@@ -101,7 +101,7 @@ df_categorizado["day"].value_counts().sort_index()
 
 
 ### Corrigir ordenamento
-```
+```python
 df_categorizado["day"].value_counts().plot(kind='bar')
 df_categorizado["day"].value_counts().sort_index().plot(kind='bar')
 dias_da_semana = ['Mon','Tue','Wed','Thur','Fri','Sat','Sun']
@@ -113,7 +113,7 @@ df_categorizado.head()
 
 ### Considerações Finais: 
 - O parâmetro ```bins``` refere-se às faixas de distribuição:
-```
+```python
 df['categoria_tip'] = pd.cut(df["tip"], bins=faixas, labels=categorias)
 ```
 - A função ```cut``` do pandas gera categorias de dados
